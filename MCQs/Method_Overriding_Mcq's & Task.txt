@@ -1,0 +1,619 @@
+Skip to main content
+Google Classroom
+Classroom
+Batch 51 (A)
+Java Batch 51 ( 10th Sep 2025 )
+Home
+Calendar
+Enrolled
+To-do
+O
+Oracle by Sudhakar L Sir
+Java Batch 51 (30th Oct 2025)
+B
+Batch 51 (A)
+Java Batch 51 ( 10th Sep 2025 )
+J
+Java Batch 51 and .NET Batch 36 HTML by Prasad Sir
+HTML (30TH JULY 2025)
+C
+C Language by Kishore Sir Online batch
+Java Batch 51 and .NET 36(7TH JULY2025)
+Archived classes
+Settings
+Assignment details
+Method Overriding
+Ravi Shankar
+•
+Yesterday
+100 points
+Batch_51_Assignment.txt
+Text
+
+Class comments
+Your work
+Assigned
+Private comments
+Create a Employee Salary calculation Application project by using Method Overriding Concept to display different kinds of salary for PartTimeEmployee and FullTimeEmployee.
+Validate all the inputs properly and generate error message, if any input is not appropriate. 
+
+Create a BLC class called Employee
+Fields :
+ id  int  protected
+ name String protected
+	
+Use a parameterized constructor to initialize all the fields, 
+
+ Methods :
+ 
+ 1) Method Name 	: calculateSalary()
+    Parameter  		: No Parameter
+    Return Type 	: double
+    Access modifier	: public
+    In this method return 0.0 for generic salary
+
+ Create another BLC class FullTimeEmployee which is sub class of Employee.
+
+  
+  Field :
+  protected double salary;
+  
+  Take a parameterized constructor to initialize super class and sub class properties.
+  Validate all the inputs properly and generate error message, if any input is not appropriate. 
+  [See the Test cases for Input Validation]
+
+ Method :
+  
+ 1) Method Name 	: calculateSalary()
+    Parameter   	: No Parameter
+    Return Type 	: double
+    Access modifier	: public
+    
+    In this overridden method return the salary of employee as a non static variable
+
+    
+Create another BLC class PartTimeEmployee which is sub class of Employee
+  
+  Field :
+  protected double hourlyRate;
+  protected int hoursWorked; 
+  
+  Take a parameterized constructor to initialize super class and sub class properties.
+  Validate all the inputs properly and generate error message, if any input is not appropriate. 
+  [See the Test cases for Input Validation]
+  
+ Method :
+  
+ 1) Method Name 	: calculateSalary()
+    Parameter   	: No Parameter
+    Return Type 	: double
+    Access modifier	: public
+    In this overridden method return the salary of employee as based on number of hours, he has
+    worked in the Organization.
+        
+    Create an ELC class EmployeeSalary with main method to test this application.
+    
+Test Cases for Output :
+------------------------
+Test Case 1 :
+-------------
+		***Salary Calculation Menu***		
+		 1) FullTime Employees 
+		 2) PartTime Employees  
+Please select the Employee type
+1
+Enter Fulltime Employee Id :101
+Enter Fulltime Employee Name :Scott
+Enter the Salary :90000
+Scott Salary is :90000.0
+
+Test Case 2 :
+-------------
+		***Salary Calculation Menu***		
+		 1) FullTime Employees 
+		 2) PartTime Employees  
+Please select the Employee type
+2
+Enter PartTime Employee Id :102
+Enter PartTime Employee Name :Alen
+Enter your hourly rate:1000
+Enter your total works hour in the month :90
+Alen Salary is :90000.0
+
+Test Cases for Input Validation :
+ ---------------------------------
+Test Cases 1:
+-------------
+		***Salary Calculation Menu***		
+		 1) FullTime Employees 
+		 2) PartTime Employees  
+Please select the Employee type
+1
+Enter Fulltime Employee Id :101
+Enter Fulltime Employee Name :Scott
+Enter the Salary :-9000
+Salary can't be negative!!!
+
+Test Cases 2:
+-------------
+ 		***Salary Calculation Menu***		
+		 1) FullTime Employees 
+		 2) PartTime Employees  
+Please select the Employee type
+2
+Enter PartTime Employee Id :102
+Enter PartTime Employee Name :Alen
+Enter your hourly rate:-12
+Enter your total works hour in the month :90
+Employee hourly rate can't be zero OR Negative
+
+Test Cases 3:
+-------------
+		***Salary Calculation Menu***		
+		 1) FullTime Employees 
+		 2) PartTime Employees  
+Please select the Employee type
+2
+Enter PartTime Employee Id :102
+Enter PartTime Employee Name :Alen
+Enter your hourly rate:1000
+Enter your total works hour in the month :-10
+Employee hours of work can't be Negative
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+package com.junaid.method_overriding;
+
+import java.util.Scanner;
+
+class Employee{
+	protected int id;
+	protected String name;
+	public Employee(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+	
+	public  double calculateSalary() {
+		return 0.0;
+	}
+	
+}
+class FullTimeEmployee extends Employee{
+protected double salary;
+FullTimeEmployee(int id,String name,double salary){
+	super(id,name);
+	this.salary=salary;
+}
+
+public double calculateSalary() {
+	return this.salary;
+	
+}
+	
+}
+
+class PartTimeEmployee extends Employee{
+	protected double hourlyRate;
+	protected int hourWorked;
+	public PartTimeEmployee(int id, String name, double hourlyRate, int hourWorked) {
+		super(id, name);
+		this.hourlyRate = hourlyRate;
+		
+		this.hourWorked = hourWorked;
+	}
+	public double calculateSalary() {
+		return (hourWorked*hourlyRate);
+		
+	}
+	
+	
+	
+}
+
+public class EmployeeSalary {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		
+		
+				
+		System.out.println("****Salary Calculation Menu****");
+		System.out.println("1). FullTime Employees: ");
+		System.out.println("2). PartTime Employees: ");
+		
+		System.out.println("Please select the Employee Type.");
+		
+		int choice = Integer.parseInt(sc.nextLine());
+		
+		switch(choice) {
+		case 1 ->{
+			System.out.print("Enter Fulltime Employee id: ");
+			int id = Integer.parseInt(sc.nextLine());
+			if(id<=0) {
+				System.out.println("Employee id can't be negative!!!");
+				System.exit(0);
+			}
+			
+			System.out.print("Enter Fulltime Employee name: ");
+			String name = sc.nextLine();
+			
+			System.out.print("Enter Fulltime Employee salary: ");
+			double salary = Double.parseDouble(sc.nextLine());
+			if(salary<=0) {
+				System.out.println("Salary can't be negative!!!");
+				System.exit(0);
+			}
+			
+			FullTimeEmployee e = new FullTimeEmployee(id,name,salary);
+			System.out.println(e.name+" Salary is "+e.calculateSalary());
+			
+			
+		}
+		case 2 ->{
+			System.out.print("Enter Parttime Employee id: ");
+			int id = Integer.parseInt(sc.nextLine());
+			
+			System.out.print("Enter Parttime Employee name: ");
+			String name = sc.nextLine();
+			
+			System.out.print("Enter hourly Rate: ");
+			double hourlyRate = Double.parseDouble(sc.nextLine());
+			if(hourlyRate<=0) {
+				System.out.println("Employee hourly rate can't be zero OR Negative");
+				System.exit(0);
+			}
+			
+			System.out.print("Enter your total work hour in the month : ");
+			int workHour = Integer.parseInt(sc.nextLine());
+			
+			PartTimeEmployee e = new PartTimeEmployee(id,name,hourlyRate,workHour);
+			
+			System.out.println(e.name+" Salary is "+e.calculateSalary());
+			
+			
+			
+			
+			
+		}
+		}
+		
+
+	}
+
+}
+
+
+=========================================================================================
+MCQ :
+-----
+Q1)
+
+class Vehicle
+{
+	public int fuelCapacity()
+	{
+		return 40;
+	}	
+	
+	public void printTankCapacity()
+	{
+		System.out.println(this.fuelCapacity());
+	}
+}
+class Car extends Vehicle
+{
+	@Override
+	public int fuelCapacity()
+	{
+		return 18;
+	}	
+}
+
+public class Test
+{
+
+	public static void main(String[] args)
+	{
+		Vehicle v1 = new Car();
+		v1.printTankCapacity();
+
+	}
+
+}
+Ans -> 18
+--------------------------------------------------------------------
+Q2) In this Program add code to print value 40.
+
+class Vehicle
+{
+	public int fuelCapacity()
+	{
+		return 40;
+	}	
+	
+	public void printTankCapacity()
+	{
+		System.out.println(this.fuelCapacity());
+	}
+}
+class Car extends Vehicle
+{
+	@Override
+	public int fuelCapacity()
+	{
+		return 18;
+	}	
+}
+
+public class Test
+{
+
+	public static void main(String[] args)
+	{
+		Vehicle v1 = new Car();
+		v1.printTankCapacity();
+
+	}
+
+}
+Ans-> 18
+---------------------------------------------------------------------
+Q3)
+
+class Bird
+{
+	public void fly()
+	{
+		System.out.println("Genric Bird is flying");
+	}
+	
+	public void roam()
+	{
+		System.out.println("Generic Bird is roamig");
+	}	
+	
+}
+class Parrot extends Bird
+{
+	
+	public int fly(double height)
+	{
+		System.out.println("Parrot is flying with :"+height+" height");
+		return 0;
+	}
+	
+	public void roam()
+	{
+		System.out.println("Parrot Bird is roamig");
+		
+	}
+}
+public class MethodOverridingDemo1 {
+
+	public static void main(String[] args) 
+	{
+		Parrot p = new Parrot();
+		p.fly(15.6);
+		p.roam();
+	}
+
+}
+
+Parrot is flying with :15.6 height
+Parrot Bird is roamig
+
+----------------------------------------------------------------------
+Q4)
+
+class Base
+	{
+        int value=0;
+        Base()
+		{
+        addValue();
+        }
+        void addValue(){
+        value += 10;
+        }
+       int getValue(){
+         return value;
+       }
+     }
+    class Derived extends Base{
+      Derived()
+	  {
+       addValue();
+      }
+     void addValue(){
+		 super.addValue();
+     value +=  30;
+      }
+    }
+    public class Test5 {
+      public static void main(String[] args){
+          Derived b = new Derived();		  
+          System.out.println(b.getValue());
+      }
+    }
+Ans -> 80
+-----------------------------------------------------------------------
+Q5)
+class Mammal 
+ { 
+ String name = "furry "; 
+ String makeNoise() 
+ { 
+  return "generic noise"; 
+ } 
+} 
+class Zebra extends Mammal 
+{ 
+ String name = "stripes "; 
+ 
+ String makeNoise() 
+ { 
+  return "bray"; 
+ } 
+} 
+public class ZooKeeper { 
+ public static void main(String[] args)
+ { 
+  new ZooKeeper().go(); 
+ } 
+ void go()
+ { 
+  Mammal m = new Zebra(); 
+  System.out.println(m.name + m.makeNoise()); 
+ } 
+}
+Ans-> Stripes And Bray
+-----------------------------------------------------------------------
+Q6)
+public class Test11
+{
+	public static void main(String [] args)
+	{
+		Animal a = new Animal();//
+		Animal b = new Horse();
+		a.eat();
+		b.eat();
+		b.buck();
+	}
+}
+class Animal
+{
+	public void eat()
+	{
+		System.out.println("Generic Animal eating");
+
+	}
+	
+}
+class Horse extends Animal
+{
+	public void eat()
+	{
+		System.out.println("Horse Eating");
+	}
+		public void buck()
+	{
+			System.out.println("Printing");
+	}
+}
+//Compilation Error:Varible be is type of animal :to call a specific method in method overriding then we should use downcasting
+-----------------------------------------------------------------------
+Q7)
+
+class A 
+{
+static void foo()
+{
+System.out.println("A");
+}
+}
+
+class B extends A
+{
+static int foo()
+{
+System.out.println("B");
+return 1;
+}
+}
+Error:
+-----------------------------------------------------------------------
+Q8)
+
+class A 
+{
+void foo() 
+{
+System.out.println("A");
+}
+}
+
+class B extends A 
+{
+void foo() 
+{
+System.out.println("B");//1
+}
+}	
+
+class Test15
+{
+public static void main(String[] args)
+{
+A obja;
+B objb = new B();
+objb.foo();
+obja = objb;
+obja.foo();//b
+}
+}
+Ans->
+B
+B
+----------------------------------------------------------------------
+Q9) Find the compilation errors
+
+public class Test19 extends Singer
+ {
+  public static String sing() 
+  {
+    return "fa";
+  }
+
+  public static void main(String[] args) 
+  {
+    Test19 t = new Test19();
+    Singer s = new Test19();
+    System.out.println(t.sing() + " " + s.sing());
+  }
+}
+
+class Singer 
+{
+  public static String sing() 
+  {
+    return "la";
+  }
+}
+
+fa la
+-----------------------------------------------------------------------
+Q10)
+class A 
+{
+private void printName(){
+System.out.println("Value-A");
+}
+}
+class B extends A
+{
+public void printName(){
+System.out.println("Name-B");
+}
+}
+public class Test23
+{
+public static void main (String[] args) 
+{
+A b = new B();
+b.printName();
+}
+}
+Ans -> Error : Cant acces prite method
+
+
+
+
+
+
+
+
+
+
+Batch_51_Assignment.txt
+Displaying Batch_51_Assignment.txt.
