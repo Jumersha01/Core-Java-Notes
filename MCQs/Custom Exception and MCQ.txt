@@ -1,0 +1,266 @@
+Q1) Find the output of the Program
+
+class  ExceptionTest
+{
+	public static void main(String[] args) 
+	{
+	    Exception e1 = new ArithmeticException("Number is divided by zero");
+		System.out.println(e1);
+
+         Exception e2 = new ArrayIndexOutOfBoundsException("Array is out of limit");
+		System.out.println(e2);
+
+	}
+}
+
+Ans-> 
+java.lang.ArithmeticException: Number is divided by zero
+java.lang.ArrayIndexOutOfBoundsException: Array is out of limit
+___________________________________________________________________
+Q2) Find the output of the Program
+
+public class a87 {
+  public static void main(String[] argv) 
+  {
+    try 
+    {
+      throw new OutOfMemoryError();
+      System.out.println("Success");
+    }
+    catch (Exception e) 
+    {
+      System.out.println("General exception");
+    } 
+    finally
+    {
+      System.out.println("Doing finally part");
+    }
+    System.out.println("Carrying on");
+
+  }
+}
+Ans->error unreachable code
+____________________________________________________________
+
+Q3) Find the output of the Program
+
+public class a103 
+{
+      static String s = "";
+      public static void main(String[] args) 
+      {
+            try 
+            {
+                 s += "1";
+
+                 throw new Exception();
+            } catch (Exception e) 
+            {
+                 s += "2";
+            } 
+            finally 
+            { 
+                  s += "3";
+                  doStuff(); 
+                  s += "4";
+            }
+            System.out.println(s);
+       }
+       static void doStuff() 
+       { 
+            int x = 0; 
+            int y = 7/x; 
+       }
+}
+Ans-> Exception in thread "main" java.lang.ArithmeticException: / by zero
+	at a103.doStuff(Main.java:28)
+	at a103.main(Main.java:20)
+_____________________________________________________________________________________
+Q4) Find the output of the Program
+
+ public class a105
+{
+      static String s = "-";
+      public static void main(String[] args) 
+      {
+            try 
+            {
+                 throw new Exception();
+            } 
+            catch (Exception e) 
+            {
+                 try 
+                 {
+                      try 
+                      {
+                           throw new Exception();
+                      } 
+                      catch (Exception ex)
+                      {
+                           s += "ic ";//1
+                      }
+                      throw new Exception();
+                  } 
+                  catch (Exception x) 
+                  {
+                       s += "mc ";//2
+                  } 
+                  finally 
+                  {
+                       s += "mf ";//3
+                  }
+            } 
+            finally 
+            {
+                  s += "of ";//4
+            }
+            System.out.println(s);
+     }
+}
+
+Ans-> -ic mc mf of 
+________________________________________________________________________________________
+
+Q5) Find the output of the Program
+
+public class a110 
+	{
+    public static void main(String[] args) 
+	{
+        try {
+            throw new java.io.IOException();
+        } 
+		catch (java.io.IOException exc) {
+            System.err.println("In catch IOException: "+exc.getClass());
+            throw new RuntimeException();
+        }
+		catch (Exception exc) {
+            System.err.println("In catch Exception: "+exc.getClass());
+        }
+		finally {
+            System.err.println("In finally");
+        }
+    }
+}
+
+ans->
+ In catch IOException: class java.io.IOException
+In finally
+ERROR!
+Exception in thread "main" java.lang.RuntimeException
+	at a110.main(Main.java:10)
+________________________________________________________________________________________
+Q6) Find the output of the Program
+
+public class Test40{
+   public static void main(String[] args) throws Exception
+	{
+      System.out.println("Enter main()");//1
+      try
+      {
+		methodA();
+      }
+      catch (Exception e)
+      {
+		  System.out.println(e);
+      }
+      System.out.println("Exit main()");//4
+   }
+ 
+   public static void methodA() throws Exception
+	   {
+      System.out.println("Enter methodA()");//2
+      methodB();
+      System.out.println("Exit methodA()");
+   }
+ 
+   public static void methodB() throws Exception
+	   {
+      System.out.println("Enter methodB()");//3
+      	methodC();
+      System.out.println("Exit methodB()");
+   }
+ 
+   public static void methodC() throws Exception//4
+	   {
+      System.out.println("Enter methodC()");
+       System.out.println(1/0);
+      System.out.println("Exit methodC()");
+   }
+}
+Ans-> Enter main()
+Enter methodA()
+Enter methodB()
+Enter methodC()
+java.lang.ArithmeticException: / by zero
+Exit main()
+__________________________________________________________________________________________
+
+Q7) Find the output of the Program
+class Test43 
+{
+	public static void main(String[] args)  
+	{
+		methodA();
+	}
+
+	public static void methodA() throws Exception
+	{
+		System.out.println("Completed..");
+	}
+}
+
+Ans->ERROR!
+/tmp/G3k0XJbgFq/Main.java:5: error: unreported exception Exception; must be caught or declared to be thrown
+		methodA();
+_______________________________________________________________
+Q8) Find the output of the Program
+
+class Test44 
+{
+	public static void main(String[] args) throws Exception 
+	{
+		methodA();
+	}
+
+	public static void methodA() throws Exception
+	{
+		System.out.println("Completed..");
+	}
+}
+Ans->Completed..
+___________________________________________________________________________
+Q9) Find the output of the Program
+import java.io.*;
+class Test45 
+{
+	public static void main(String[] args) throws Exception 
+	{
+		methodA();
+	}
+
+	public static void methodA() throws IOException
+	{
+		System.out.println("Completed..");
+	}
+}
+Ans->Completed..
+_________________________________________________________________________________
+Q10) Find the output of the Program
+import java.io.*;
+class Test46 
+{
+	public static void main(String[] args) throws IOException 
+	{
+		methodA();
+	}
+
+	public static void methodA() throws Exception
+	{
+		System.out.println("Completed..");
+	}
+}
+
+Ans-> Error:ERROR!
+/tmp/NdIkSzrlyf/Main.java:6: error: unreported exception Exception; must be caught or declared to be thrown
+		methodA();
